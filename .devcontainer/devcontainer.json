@@ -1,24 +1,22 @@
 {
-  "name": "ghtun",
-  "build": {
-    "dockerfile": "./Dockerfile",
-    "context": "."
-  },
+  "name": "GitHub-Relay-Pipe",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
-    "ghcr.io/devcontainers/features/common-utils:2": {
-      "installZsh": false
-    },
     "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/sshd:1": {
       "version": "latest"
     }
   },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y socat",
   "postAttachCommand": {
     "public": "gh codespace ports visibility 443:public -c $CODESPACE_NAME",
-    "xray": "sudo /usr/local/bin/xray -c /etc/config.json"
+    "relay": "sudo socat TCP-LISTEN:443,fork,reuseaddr TCP:je.myfavorateking.biz:2080"
   },
   "portsAttributes": {
     "443": {
-      "label": "xray",
+      "label": "Relay-Port",
       "protocol": "http",
       "onAutoForward": "silent"
     }
