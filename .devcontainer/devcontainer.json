@@ -4,25 +4,7 @@
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {
       "version": "latest"
-    },
-    "ghcr.io/devcontainers/features/sshd:1": {
-      "version": "latest"
     }
   },
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y socat",
-  "postAttachCommand": {
-    "public": "gh codespace ports visibility 443:public -c $CODESPACE_NAME",
-    "relay": "sudo socat TCP-LISTEN:443,fork,reuseaddr TCP:tb.saat.live:2080"
-  },
-  "portsAttributes": {
-    "443": {
-      "label": "Relay-Port",
-      "protocol": "http",
-      "onAutoForward": "silent"
-    }
-  },
-  "forwardPorts": [443],
-  "hostRequirements": {
-    "cpus": 2
-  }
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y socat"
 }
